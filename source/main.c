@@ -8,7 +8,7 @@ int main()
   srvInit();        // services
   aptInit();        // applets
   hidInit(NULL);    // input
-  gfxInit();        // graphics
+  gfxInitDefault(); // graphics
   gfxSet3D(false);  // stereoscopy (true == on / false == off)
   u32 kDown;        // keys down
   u32 kHeld;        // keys pressed
@@ -16,7 +16,7 @@ int main()
   u8* fbTopLeft;    // top left screen's framebuffer
   u8* fbTopRight;   // top right screen's framebuffer
   u8* fbBottom;     // bottom screen's framebuffer
-    
+  consoleInit(GFX_TOP, NULL); //console on top screen
   // Main loop
   while (aptMainLoop())
   {
@@ -43,12 +43,11 @@ int main()
     memset(fbTopRight, 0, 240 * 400 * 3);
     memset(fbBottom, 0, 240 * 320 * 3);
 
-
-    /** Your code starts here **/
-    
-    
-    
-    /** End of your code **/
+    if (kDown & KEY_A){
+      printf("\x1b[15;19HHello!");
+    }else {
+      printf("\x1b[15;19H ");
+    }
 
     
     // Flush and swap framebuffers
