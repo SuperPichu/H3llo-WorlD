@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <3ds.h>
+#include <time.h>
+
+
 
 int main()
-{
+{ 
   // Initializations
   srvInit();        // services
   aptInit();        // applets
@@ -30,11 +33,6 @@ int main()
     kHeld = hidKeysHeld();
     kUp = hidKeysUp();
 
-    // If START button is pressed, break loop and quit
-    if (kDown & KEY_START){
-      break;
-    }
-    
     // Reset framebuffers
     fbTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
     fbTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
@@ -42,11 +40,25 @@ int main()
     memset(fbTopLeft, 0, 240 * 400 * 3);
     memset(fbTopRight, 0, 240 * 400 * 3);
     memset(fbBottom, 0, 240 * 320 * 3);
+    
+    // If START button is pressed, break loop and quit
+    if (kDown & KEY_START){
+      printf("\x1b[15;19HGoodbye");
+      break;
+    }
+    
+    
 
     if (kHeld & KEY_A){
-      printf("\x1b[15;19HHello!");
+      printf("\x1b[15;19HThe A Button is Pressed!");
+    }else if (kHeld & KEY_B){
+      printf("\x1b[15;19HThe B Button is Pressed!");
+    }else if (kHeld & KEY_X){
+      printf("\x1b[15;19HThe X Button is Pressed!");
+    }else if (kHeld & KEY_Y){
+      printf("\x1b[15;19HThe Y Button is Pressed!");
     }else {
-      printf("\x1b[15;19H ");
+      printf("\x1b[15;19HNothing is Pressed :[ ");
     }
 
     
