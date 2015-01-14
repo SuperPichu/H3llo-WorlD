@@ -43,7 +43,7 @@ int main()
     memset(fbTopRight, 0, 240 * 400 * 3);
     memset(fbBottom, 0, 240 * 320 * 3);
 
-    if (kDown & KEY_A){
+    if (kHeld & KEY_A){
       printf("\x1b[15;19HHello!");
     }else {
       printf("\x1b[15;19H ");
