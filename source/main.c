@@ -12,14 +12,14 @@ int main()
   aptInit();        // applets
   hidInit(NULL);    // input
   gfxInitDefault(); // graphics
-  gfxSet3D(false);  // stereoscopy (true == on / false == off)
+  gfxSet3D(true);  // stereoscopy (true == on / false == off)
   u32 kDown;        // keys down
   u32 kHeld;        // keys pressed
   u32 kUp;          // keys up
   u8* fbTopLeft;    // top left screen's framebuffer
   u8* fbTopRight;   // top right screen's framebuffer
   u8* fbBottom;     // bottom screen's framebuffer
-  consoleInit(GFX_TOP, NULL); //console on top screen
+  consoleInit(GFX_TOP, NULL);
   // Main loop
   while (aptMainLoop())
   {
@@ -43,22 +43,26 @@ int main()
     
     // If START button is pressed, break loop and quit
     if (kDown & KEY_START){
-      printf("\x1b[15;19HGoodbye");
+      printf("\x1b[15;20HGoodbye");
       break;
     }
     
     
 
     if (kHeld & KEY_A){
-      printf("\x1b[15;19HThe A Button is Pressed!");
+      printf("\x1b[15;12HThe A Button is Pressed!");
     }else if (kHeld & KEY_B){
-      printf("\x1b[15;19HThe B Button is Pressed!");
+      printf("\x1b[15;12HThe B Button is Pressed!");
     }else if (kHeld & KEY_X){
-      printf("\x1b[15;19HThe X Button is Pressed!");
+      printf("\x1b[15;12HThe X Button is Pressed!");
     }else if (kHeld & KEY_Y){
-      printf("\x1b[15;19HThe Y Button is Pressed!");
+      printf("\x1b[15;12HThe Y Button is Pressed!");
+    }else if (kHeld & KEY_L){
+      printf("\x1b[15;12HThe L Button is Pressed!");
+    }else if (kHeld & KEY_R){
+      printf("\x1b[15;12HThe R Button is Pressed!");
     }else {
-      printf("\x1b[15;19HNothing is Pressed :[ ");
+      printf("\x1b[15;14HNothing is Pressed :[ ");
     }
 
     
